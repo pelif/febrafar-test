@@ -1,0 +1,69 @@
+version: '3.7'
+services:
+    db_febrafar:
+        container_name: db_test_febrafar
+        image: mysql:5.6
+        volumes:
+            - dbdata:/var/lib/mysql
+        environment:
+            - "MYSQL_DATABASE=api_test_febrafar"
+            - "MYSQL_USER=test_febrafar"
+            - "MYSQL_PASSWORD=test_febrafar"
+            - "MYSQL_ROOT_PASSWORD=1234567"
+            - "MYSQL_PORT=3306"
+        ports:
+            - 3306:3306
+        networks:
+            febraNetwork:
+                ipv4_address: 172.80.0.2
+
+    app_febrafar:
+        container_name: app_test_febrafar
+        build:
+            context: .
+            dockerfile: app.Dockerfile
+        working_dir: /var/www
+        ports:
+            - 8001:80
+        volumes:
+            - /var/www/storage
+            - ./:/var/www
+        env_file: '.env'
+        environment:
+            - "DB_HOST=database"
+            - "DB_PORT=3306"
+        links:
+            - db_febrafar
+        depends_on:
+            - db_febrafar
+        networks:
+            febraNetwork:
+                ipv4_address: 172.80.0.3
+
+    nginx_febrafar:
+        container_name: nginx_test_febrafar
+        build:
+            context: .
+            dockerfile: web.Dockerfile
+        ports:
+            - 8080:80
+        links:
+            - app_febrafar
+        networks:
+            - febraNetwork
+        volumes:
+            - ./:/var/www
+            - ./nginx/access.log:/var/log/nginx/access.log
+            - ./nginx/error.log:/var/log/nginx/error.log
+        networks:
+            febraNetwork:
+                ipv4_address: 172.80.0.3
+
+networks:
+    febraNetwork:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.80.0.0/16
+volumes:
+    dbdata:
