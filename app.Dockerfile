@@ -8,11 +8,19 @@ RUN apt-get update && apt-get install -y  \
 
 RUN docker-php-ext-configure zip
 
-RUN docker-php-ext-install pdo_mysql zip
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-enable pdo_mysql
 
 COPY composer.lock composer.json /var/www/
 
 COPY database /var/www/database
+
+RUN sed -i 's/;extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini-development
+RUN sed -i 's/;   extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini-development
+RUN sed -i 's/;extension=pdo_mysql/extension=pdo_mysql/g' /usr/local/etc/php/php.ini-development
+RUN sed -i 's/;extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini-production
+RUN sed -i 's/;   extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini-production
+RUN sed -i 's/;extension=pdo_mysql/extension=pdo_mysql/g' /usr/local/etc/php/php.ini-production
 
 WORKDIR /var/www
 

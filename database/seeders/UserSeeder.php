@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('123456')
         ];
 
-        User::firstOrNew($data, $data);
+        User::firstOrCreate($data, $data);
     }
 
 }

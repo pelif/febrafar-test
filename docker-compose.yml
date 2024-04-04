@@ -2,7 +2,7 @@ version: '3.7'
 services:
     db_febrafar:
         container_name: db_test_febrafar
-        image: mysql:5.6
+        image: mysql:5.7
         volumes:
             - dbdata:/var/lib/mysql
         environment:
@@ -30,7 +30,7 @@ services:
             - ./:/var/www
         env_file: '.env'
         environment:
-            - "DB_HOST=database"
+            - "DB_HOST=db_febrafar"
             - "DB_PORT=3306"
         links:
             - db_febrafar
@@ -46,7 +46,7 @@ services:
             context: .
             dockerfile: web.Dockerfile
         ports:
-            - 8080:80
+            - 80:80
         links:
             - app_febrafar
         networks:
@@ -57,7 +57,7 @@ services:
             - ./nginx/error.log:/var/log/nginx/error.log
         networks:
             febraNetwork:
-                ipv4_address: 172.80.0.3
+                ipv4_address: 172.80.0.4
 
 networks:
     febraNetwork:
