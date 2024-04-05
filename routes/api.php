@@ -19,14 +19,14 @@ Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function() {
 
-    // Route::get('hello/world', [\App\Http\Controllers\HelloController::class, 'index']);
+    Route::get('hello/world', [\App\Http\Controllers\HelloController::class, 'index']);
 
-    // Route::resource('schedules', ScheduleController::class)
-    //      ->only([
-    //         'store', 'update', 'destroy'
-    //     ]);
+    Route::resource('schedules', ScheduleController::class)
+         ->only([
+            'store', 'update', 'destroy'
+        ]);
 
-    // Route::match(['get', 'post'], '/schedules/list', [ScheduleController::class, 'index']);
+    Route::match(['get', 'post'], '/schedules/list', [ScheduleController::class, 'index']);
 
 });
 
