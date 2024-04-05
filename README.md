@@ -19,7 +19,7 @@ Na raíz do projeto há um arquivo **docker-compose.yml**. O projeto foi separad
 
  - db_febrafar - Este é o serviço que está rodando nosso banco de dados Mysql, seu contianer é **db_test_febrafar**
  - app_febrafar - Este é o serviço que contém a aplicação , seu container é **app_febrafar** roda php 8.1 fpm
- - nginx_febrafar - Este é o serviço que contém a nginx que faz proxy reverso com o serviço app_febrafar , seu container é **app_febrafar** roda php 8.1 fpm
+ - nginx_febrafar - Este é o serviço que contém a nginx que faz proxy reverso com o serviço nginx_febrafar , seu container é **nginx_test_febrafar** roda php 8.1 fpm
 
  
 ## Endpionts da API
