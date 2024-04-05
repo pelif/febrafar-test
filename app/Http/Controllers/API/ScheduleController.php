@@ -6,7 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use App\Services\Contracts\ScheduleServiceInterface;
 use Illuminate\Http\Request;
+use OpenApi\Attributes as OA;
 
+/**
+ * @OA\Server(url="http://localhost/api")
+ * @OA\Info(title="Test Febrafar API", version="1.0")
+ */
 class ScheduleController extends Controller
 {
     private $service;
@@ -17,10 +22,17 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Display a listing of the schedules.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    *  @OA\GET(
+    *      path="/api/schedules",
+    *      summary="Get all schedules",
+    *      description="Get all schedules without date filters",
+    *      tags={"Test"},
+    *      @OA\Response(
+    *          response=200,
+    *          description="successful operation"
+    *      )
+    *  )
+    */
     public function index(Request $request)
     {
         return $this->service->index($request);
