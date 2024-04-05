@@ -1,4 +1,4 @@
-## About Laravel
+## FARMARCAS DESAFIO TÉCNICO
 
 Este projeto consiste em desenvolvimento de api Utlizando PHP 8.1, Laravel 9.19, Mysql5.7, Nginx, Docker e Docker Compose. Ele foi desenvolvido por conta de um teste técnico da FebraFar. 
 
