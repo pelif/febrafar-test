@@ -10,15 +10,8 @@ basta rodar o comando **docker-compose up -d --build** que o projeto vai subir e
 
 Para instalar a base da aplicação, na raiz da aplicação basta rodar o comando **php artisan migrate** que as tables serão criadas. Para criar um usuário de teste basta rodar uma seeder específica com o comando: **php artisan db:seed \\Database\\Seeders\\UserSeeder** . Com este comando será criado o usuário : 
 
-
- ´´´ 
-{
-    "email": "test@email.com",
-    "password": "123456"      
-}
- ´´´
-
-
+{ "email": "test@email.com",  "password": "123456" }
+ 
 ### Observações: 
 
 Na raíz do projeto há um arquivo **docker-compose.yml**. O projeto foi separado em três serviços: 
