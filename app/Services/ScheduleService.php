@@ -13,13 +13,30 @@ class ScheduleService implements ScheduleServiceInterface
 
     use ValidateSchedule;
 
+
     /**
      * List of Schedules
      *
+     * @param  Request $request
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
+        if($request->getMethod() == 'POST') {
+            $validator = $this->validateFilters($request);
+
+            if($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+
+            $schedules = Schedule::whereBetween('start', [
+                $request->start_date,
+                $request->end_date
+            ])->get();
+
+            return response()->json($schedules, 200);
+        }
+
         $schedules = Schedule::orderBy('id', 'desc')->get();
         return response()->json($schedules, 200);
     }

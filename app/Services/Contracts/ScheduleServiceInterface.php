@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 interface ScheduleServiceInterface
 {
 
+
     /**
      * index
      *
+     * @param  Request $request
      * @return JsonResponse
      */
-    public function index(): JsonResponse;
+    public function index(Request $request): JsonResponse;
 
 
     /**

@@ -84,4 +84,27 @@ trait ValidateSchedule
         return false;
     }
 
+
+    /**
+     * Validate filters of list Schedule
+     *
+     * @param  Request $request
+     * @return ValidationValidator
+     */
+    public function validateFilters(Request $request): ValidationValidator
+    {
+        $inputs = $request->all();
+
+        $rules = [
+            'start_date' => 'date',
+            'end_date' => 'date'
+        ];
+
+        $msg = ['date' => ':attribute must be date type'];
+
+        return Validator::make($inputs, $rules, $msg);
+    }
+
+
+
 }

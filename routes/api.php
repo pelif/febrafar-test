@@ -23,8 +23,10 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::resource('schedules', ScheduleController::class)
          ->only([
-            'index', 'store', 'update', 'destroy'
+            'store', 'update', 'destroy'
         ]);
+
+    Route::match(['get', 'post'], '/schedules/list', [ScheduleController::class, 'index']);
 
 });
 
