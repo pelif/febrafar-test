@@ -13,6 +13,11 @@ class HelloController extends Controller
 
     public function index(): JsonResponse
     {
-        return response()->json(['helllo' => 'world'], 200);
+        $data = [
+            'hello' => 'world',
+            'user' => auth('sanctum')->user()
+        ];
+
+        return response()->json($data, 200);
     }
 }
