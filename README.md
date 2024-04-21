@@ -1,6 +1,6 @@
-## FARMARCAS DESAFIO TÉCNICO
+## Estudos de Testes Unitários e Design Patterns no Laravel
 
-Este projeto consiste em desenvolvimento de api Utlizando PHP 8.1, Laravel 9.19, Mysql5.7, Nginx, Docker e Docker Compose. Ele foi desenvolvido por conta de um teste técnico da FebraFar. 
+Este projeto consiste em desenvolvimento de api Utlizando PHP 8.1, Laravel 9.19, Mysql5.7, Nginx, Docker e Docker Compose. Ele foi desenvolvido para estudos de API, testes unitários e Design Patterns. 
 
 ## Instruções de Instalação
 

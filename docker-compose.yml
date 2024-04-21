@@ -59,6 +59,13 @@ services:
             febraNetwork:
                 ipv4_address: 172.80.0.4
 
+    redis:
+        container_name: redis_test_febrafar
+        image: redis:latest
+        networks:
+            febraNetwork:
+                ipv4_address: 172.80.0.5
+
 networks:
     febraNetwork:
         driver: bridge

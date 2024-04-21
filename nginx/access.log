@@ -170,3 +170,8 @@
 172.80.0.1 - - [05/Apr/2024:15:33:01 +0000] "GET /docs/asset/favicon-32x32.png?v=40d4f2c38d1cd854ad463f16373cbcb6 HTTP/1.1" 200 640 "http://localhost/api/documentation" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
 172.80.0.1 - - [05/Apr/2024:15:33:02 +0000] "GET /docs/api-docs.json HTTP/1.1" 404 9961 "http://localhost/api/documentation" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
 172.80.0.1 - - [05/Apr/2024:15:33:07 +0000] "GET /api/docs/api-docs.json HTTP/1.1" 404 7050 "http://localhost/api/documentation" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+172.80.0.1 - - [21/Apr/2024:20:01:47 +0000] "GET / HTTP/1.1" 404 6616 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+172.80.0.1 - - [21/Apr/2024:20:01:47 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://localhost/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+172.80.0.1 - - [21/Apr/2024:20:02:27 +0000] "POST /api/login HTTP/1.1" 500 10798 "-" "PostmanRuntime/7.36.3"
+172.80.0.1 - - [21/Apr/2024:20:08:15 +0000] "POST /api/login HTTP/1.1" 500 10798 "-" "PostmanRuntime/7.36.3"
+172.80.0.1 - - [21/Apr/2024:20:17:14 +0000] "POST /api/login HTTP/1.1" 202 102 "-" "PostmanRuntime/7.36.3"
