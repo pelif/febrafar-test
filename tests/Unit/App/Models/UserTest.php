@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserTest extends ModelTestCase
 {
+
     protected function model(): Model
     {
         return new User();
