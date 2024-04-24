@@ -35,4 +35,7 @@ Segue a lista de alguns endpoints da API:
 
 Também será disponibilizado uma collection no formato postman para validação dos Endpoints e para detalhamento maior a respeito dos payloads e retornos. 
 
+OBS: 
+
+Ao testar a API, é necessário pegar o token gerado e atualizar na variável de ambiente API_TOKEN do .env . Posteriormente o processo de reaproveitamento de token será feito automaticamente. 
 
