@@ -1,24 +1,24 @@
 version: '3.7'
 services:
-    db_febrafar:
-        container_name: db_test_febrafar
+    db_laravel_api_tests:
+        container_name: db_lara_api
         image: mysql:5.7
         volumes:
             - dbdata:/var/lib/mysql
         environment:
-            - "MYSQL_DATABASE=api_test_febrafar"
-            - "MYSQL_USER=test_febrafar"
-            - "MYSQL_PASSWORD=test_febrafar"
+            - "MYSQL_DATABASE=laravel_api_tests"
+            - "MYSQL_USER=laravel_tests"
+            - "MYSQL_PASSWORD=laravel_tests"
             - "MYSQL_ROOT_PASSWORD=1234567"
             - "MYSQL_PORT=3306"
         ports:
             - 3306:3306
         networks:
-            febraNetwork:
+            laravelAPITests:
                 ipv4_address: 172.80.0.2
 
-    app_febrafar:
-        container_name: app_test_febrafar
+    app_laravel_api_tests:
+        container_name: app_lara_api
         build:
             context: .
             dockerfile: app.Dockerfile
@@ -30,44 +30,44 @@ services:
             - ./:/var/www
         env_file: '.env'
         environment:
-            - "DB_HOST=db_febrafar"
+            - "DB_HOST=db_laravel_api_tests"
             - "DB_PORT=3306"
         links:
-            - db_febrafar
+            - db_laravel_api_tests
         depends_on:
-            - db_febrafar
+            - db_laravel_api_tests
         networks:
-            febraNetwork:
+            laravelAPITests:
                 ipv4_address: 172.80.0.3
 
-    nginx_febrafar:
-        container_name: nginx_test_febrafar
+    nginx_laravel_api_tests:
+        container_name: nginx_lara_api
         build:
             context: .
             dockerfile: web.Dockerfile
         ports:
             - 80:80
         links:
-            - app_febrafar
+            - app_laravel_api_tests
         networks:
-            - febraNetwork
+            - laravelAPITests
         volumes:
             - ./:/var/www
             - ./nginx/access.log:/var/log/nginx/access.log
             - ./nginx/error.log:/var/log/nginx/error.log
         networks:
-            febraNetwork:
+            laravelAPITests:
                 ipv4_address: 172.80.0.4
 
     redis:
-        container_name: redis_test_febrafar
+        container_name: redis_lara_api
         image: redis:latest
         networks:
-            febraNetwork:
+            laravelAPITests:
                 ipv4_address: 172.80.0.5
 
 networks:
-    febraNetwork:
+    laravelAPITests:
         driver: bridge
         ipam:
             config:
