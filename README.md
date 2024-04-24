@@ -17,9 +17,10 @@ Este é o usuário que será usado no endpoint de login e será enviado no body 
 
 Na raíz do projeto há um arquivo **docker-compose.yml**. O projeto foi separado em três serviços: 
 
- - db_febrafar - Este é o serviço que está rodando nosso banco de dados Mysql, seu contianer é **db_test_febrafar**
- - app_febrafar - Este é o serviço que contém a aplicação , seu container é **app_febrafar** roda php 8.1 fpm
- - nginx_febrafar - Este é o serviço que contém a nginx que faz proxy reverso com o serviço nginx_febrafar , seu container é **nginx_test_febrafar** roda servidor web nginx
+ - db_laravel_api_tests - Este é o serviço que está rodando nosso banco de dados Mysql, seu contianer é **db_lara_api**
+ - app_laravel_api_tests - Este é o serviço que contém a aplicação , seu container é **app_lara_api** roda php 8.1 fpm
+ - nginx_laravel_api_tests - Este é o serviço que contém a nginx que faz proxy reverso com o serviço app_laravel_api_tests , seu container é **nginx_lara_api** roda servidor web nginx
+ - redis - serviço rodando redis para eventuais caches necessários, seu container é redis_lara_api
 
  
 ## Endpionts da API
