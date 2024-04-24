@@ -5,7 +5,24 @@ Este projeto consiste em desenvolvimento de api Utlizando PHP 8.1, Laravel 9.19,
 ## Instruções de Instalação
 
 Para rodar este projeto é necessário ter o Docker e Docker Compose devidamente instalado no host. Na raíz do projeto 
-basta rodar o comando **docker-compose up -d --build** que o projeto vai subir em containers e após todo o processo de build o mesmo estará disponível no endereço: **http://localhost**. É necessário ter a porta 80 liberada para rodar a aplicação. 
+basta rodar o comando **composer install**, após concluir as instalações do composer rode o comando **docker-compose up -d --build** que o projeto vai subir em containers e após todo o processo de build o mesmo estará disponível no endereço: **http://localhost**. É necessário ter a porta 80 liberada para rodar a aplicação. 
+
+Também será preciso configurar o arquivo .env com algumas credenciais, primeiramente copie o arquivo .env.example na raíz do projeto renomeando-o para .env. Depois configure as credenciais de banco de dados da seguinte forma: 
+
+DB_CONNECTION=mysql
+DB_HOST=172.80.0.2
+DB_PORT=3306
+DB_DATABASE=laravel_api_tests
+DB_USERNAME=laravel_tests
+DB_PASSWORD=laravel_tests
+
+Pois como o ambiente do projeto está configurado para rodar no docker, é preciso que pelo o DB_HOST esteja conforme especificado, pois o docker está usando rede interna com este ip fixo para o banco de dados. 
+
+No .env também configure estas credenciais : 
+
+API_USER_TEST=test@email.com
+API_PSSWD_TEST=123456
+API_TOKEN=2|9G9xngOqXx3TiQYX0eShZ2BTCygNeCfYEihLBssA8120175e
 
 Para instalar a base da aplicação, na raiz da aplicação basta rodar o comando **php artisan migrate** que as tables serão criadas. Para criar um usuário de teste basta rodar uma seeder específica com o comando: **php artisan db:seed \\\Database\\\Seeders\\\UserSeeder** . Com este comando será criado o usuário : 
 
