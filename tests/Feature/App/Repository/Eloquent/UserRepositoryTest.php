@@ -6,7 +6,8 @@ use App\Models\User;
 use Tests\TestCase;
 use App\Repository\Contracts\UserRepositoryInterface;
 use App\Repository\Eloquent\UserRepository;
-
+use App\Repository\Exceptions\NotFoundException;
+use Exception;
 
 class UserRepositoryTest extends TestCase
 {
@@ -48,4 +49,82 @@ class UserRepositoryTest extends TestCase
         $this->assertIsArray($response);
         $this->assertCount(10, $response);
     }
+
+    public function testCreate(): void
+    {
+        $data = [
+            'name' => 'Pelif Elnida',
+            'email' => 'pelif.elnida@test.com',
+            'password' => bcrypt('123456')
+        ];
+
+        $response = $this->repository->create($data);
+
+        $this->assertNotNull($response);
+
+        $this->assertInstanceOf(
+            User::class,
+            $response
+        );
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'pelif.elnida@test.com'
+        ]);
+    }
+
+    public function testUpdate(): void
+    {
+        $user = User::factory()->create();
+
+        $data = [
+            'name' => 'New Name'
+        ];
+
+        $response = $this->repository->update($user->email, $data);
+
+        $this->assertIsObject($response);
+        $this->assertDatabaseHas('users', ['name' => 'New Name']);
+    }
+
+    public function testDelete(): void
+    {
+        $user = User::factory()->create();
+
+        $deleted = $this->repository->delete($user->email);
+
+        $this->assertTrue($deleted);
+        $this->assertDatabaseMissing('users', ['email' => $user->email]);
+
+    }
+
+    public function testDeleteNotFound(): void
+    {
+        $this->expectException(NotFoundException::class);
+        $this->repository->delete('fake_email');
+
+        // try {
+        //     $this->repository->delete('fake_email');
+        //     $this->assertTrue(false);
+        // } catch(\Throwable $th) {
+        //     $this->assertInstanceOf(NotFoundException::class, $th);
+        // }
+    }
+
+    public function testFind(): void
+    {
+        $user = User::factory()->create();
+
+        $finded = $this->repository->find($user->email);
+
+        $this->assertIsObject($finded);
+    }
+
+    public function testFindNotFound(): void
+    {
+        $finded = $this->repository->find('fake mail');
+
+        $this->assertNull($finded);
+    }
+
+
 }
