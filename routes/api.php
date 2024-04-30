@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\ScheduleController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login']);
+
+ //Endpoint de Users
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/paginate', [UserController::class, 'paginate']);
 
 Route::middleware('auth:sanctum')->group(function() {
 

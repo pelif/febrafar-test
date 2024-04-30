@@ -22,6 +22,11 @@ class UserRepository implements UserRepositoryInterface
         return $this->model->get()->toArray();
     }
 
+    public function paginate()
+    {
+        return $this->model->paginate();
+    }
+
     public function create(array $data): object
     {
         return $this->model->create($data);

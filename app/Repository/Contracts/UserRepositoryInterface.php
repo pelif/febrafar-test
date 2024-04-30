@@ -7,6 +7,7 @@ use App\Models\User;
 interface UserRepositoryInterface
 {
     public function findAll(): array;
+    public function paginate();
     // public function paginate(int $page = 1): PaginationInterface;
     public function create(array $data): object;
     public function getModel(): User;

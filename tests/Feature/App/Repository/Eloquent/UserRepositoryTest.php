@@ -42,12 +42,12 @@ class UserRepositoryTest extends TestCase
 
     public function testFindAll(): void
     {
-        user::factory()->count(10)->create();
+        user::factory()->count(15)->create();
 
         $response = $this->repository->findAll();
 
         $this->assertIsArray($response);
-        $this->assertCount(10, $response);
+        $this->assertCount(15, $response);
     }
 
     public function testCreate(): void
