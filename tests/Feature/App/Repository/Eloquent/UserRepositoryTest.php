@@ -93,21 +93,15 @@ class UserRepositoryTest extends TestCase
         $deleted = $this->repository->delete($user->email);
 
         $this->assertTrue($deleted);
-        $this->assertDatabaseMissing('users', ['email' => $user->email]);
 
+        $this->assertDatabaseMissing('users', ['email' => $user->email]);
     }
 
     public function testDeleteNotFound(): void
     {
         $this->expectException(NotFoundException::class);
-        $this->repository->delete('fake_email');
 
-        // try {
-        //     $this->repository->delete('fake_email');
-        //     $this->assertTrue(false);
-        // } catch(\Throwable $th) {
-        //     $this->assertInstanceOf(NotFoundException::class, $th);
-        // }
+        $this->repository->delete('fake_email');
     }
 
     public function testFind(): void
