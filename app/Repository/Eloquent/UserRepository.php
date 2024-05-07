@@ -31,6 +31,8 @@ class UserRepository implements UserRepositoryInterface
 
     public function create(array $data): object
     {
+        $data['password'] = bcrypt($data['password']);
+
         return $this->model->create($data);
     }
 
@@ -41,12 +43,11 @@ class UserRepository implements UserRepositoryInterface
 
     public function update(string $email, array $data): object
     {
-        $user = $this->model
-                     ->where('email', $email)
-                     ->first();
+        if(isset($data['password']))
+            $data['password'] = bcrypt($data['password']);
 
+        $user = $this->find($email);
         $user->update($data);
-
         $user->refresh();
 
         return $user;
@@ -54,18 +55,16 @@ class UserRepository implements UserRepositoryInterface
 
     public function delete(string $email): bool
     {
-        if(!$user = $this->find($email)) {
+       return $this->find($email)->delete();
+    }
+
+    public function find(string $email): object
+    {
+        if (!$user = $this->model->where('email', $email)->first()) {
             throw new NotFoundException('User Not Found!');
         }
 
-        return $user->delete();
-    }
-
-    public function find(string $email): object|null
-    {
-        return $this->model
-                     ->where('email', $email)
-                     ->first();
+        return $user;
     }
 
 

@@ -115,9 +115,10 @@ class UserRepositoryTest extends TestCase
 
     public function testFindNotFound(): void
     {
-        $finded = $this->repository->find('fake mail');
+        $this->expectException(NotFoundException::class);
+        $this->repository->find('fake mail');
 
-        $this->assertNull($finded);
+        // $this->assertNull($finded);
     }
 
 
