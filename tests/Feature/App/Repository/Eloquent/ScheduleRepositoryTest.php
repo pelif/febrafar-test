@@ -25,6 +25,15 @@ class ScheduleRepositoryTest extends TestCase
         );
     }
 
+    public function testPaginateEmpty(): void
+    {
+        $response = $this->repository->paginate();
+
+        $this->assertIsArray($response->items());
+        $this->assertEquals(0, $response->total());
+    }
+
+
     public function testPaginate(): void
     {
         Schedule::factory()->count(15)->create();
