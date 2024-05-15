@@ -7,6 +7,7 @@ use App\Models\User;
 
 class UserObserver
 {
+
     /**
      * Handle the User "creating" event.
      *

@@ -43,6 +43,18 @@ class Schedule extends Model
         'updated_at'
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'int',
+        'user_id' => 'string',
+    ];
+
+    public $incrementing = true;
+
 
     /**
      * Relationship with User
